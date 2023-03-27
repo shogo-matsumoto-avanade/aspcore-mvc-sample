@@ -17,7 +17,7 @@ namespace Matsu.CoreSample.Web.Controllers
         public IActionResult Index()
         {
             var result = GetWorkFlowResults();
-            return View(result);
+            return View("Index", result);
 
         }
 
