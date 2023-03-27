@@ -23,7 +23,8 @@ namespace Matsu.CoreSample.Web.Controllers
         public string GetWorkFlowResults()
         {
             var api = new LogicAppsStandardWebApi();
-            return api.CallHttpTrigger("https://la4standard.azurewebsites.net:443/api/WF-HTTPtrigger/triggers/manual/invoke?api-version=2022-05-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0", "tFJChuAq-AwUYqVJIOrtFrsGlQcqG7QA3JiXE6YhB0c").Result.ToString();
+            var result = api.CallHttpTrigger("https://la4standard.azurewebsites.net:443/api/WF-HTTPtrigger/triggers/manual/invoke?api-version=2022-05-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0", "tFJChuAq-AwUYqVJIOrtFrsGlQcqG7QA3JiXE6YhB0c").Result.ToString();
+            return $"Time from Logic Apps: {result}";
         }
 
         public IActionResult Privacy()
