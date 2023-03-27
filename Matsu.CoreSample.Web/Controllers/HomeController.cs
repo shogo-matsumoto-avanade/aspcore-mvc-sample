@@ -27,6 +27,11 @@ namespace Matsu.CoreSample.Web.Controllers
             return $"Time from Logic Apps: {result}";
         }
 
+        public string GetApiResults()
+        {
+            return "Success App Service Api Call!";
+        }
+
         public IActionResult Privacy()
         {
             return View();
