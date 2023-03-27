@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Matsu.CoreSample.Web/1.0.0": {
+        "dependencies": {
+          "Matsu.CoreSample.Common": "1.0.0"
+        },
+        "runtime": {
+          "Matsu.CoreSample.Web.dll": {}
+        }
+      },
+      "Matsu.CoreSample.Common/1.0.0": {
+        "runtime": {
+          "Matsu.CoreSample.Common.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Matsu.CoreSample.Web/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Matsu.CoreSample.Common/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

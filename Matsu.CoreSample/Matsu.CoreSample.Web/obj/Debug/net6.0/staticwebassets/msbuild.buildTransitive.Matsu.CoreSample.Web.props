@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Matsu.CoreSample.Web.props" />
+</Project>
