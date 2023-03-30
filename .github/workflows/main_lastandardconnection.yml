@@ -51,7 +51,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'lastandardConnection'
+          app-name: 'webapp4connect-sqldb'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_2F9C8E21EE294471B9346163BDC10C07 }}
           package: .
