@@ -36,7 +36,7 @@ namespace Matsu.CoreSample.Web.Controllers
             }
 
             var keyValue = await _context.KeyValue
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (keyValue == null)
             {
                 return NotFound();
@@ -90,7 +90,7 @@ namespace Matsu.CoreSample.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Value")] KeyValue keyValue)
         {
-            if (id != keyValue.Id)
+            if (id != keyValue.id)
             {
                 return NotFound();
             }
@@ -104,7 +104,7 @@ namespace Matsu.CoreSample.Web.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!KeyValueExists(keyValue.Id))
+                    if (!KeyValueExists(keyValue.id))
                     {
                         return NotFound();
                     }
@@ -127,7 +127,7 @@ namespace Matsu.CoreSample.Web.Controllers
             }
 
             var keyValue = await _context.KeyValue
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.id == id);
             if (keyValue == null)
             {
                 return NotFound();
@@ -157,7 +157,7 @@ namespace Matsu.CoreSample.Web.Controllers
 
         private bool KeyValueExists(int id)
         {
-          return (_context.KeyValue?.Any(e => e.Id == id)).GetValueOrDefault();
+          return (_context.KeyValue?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
