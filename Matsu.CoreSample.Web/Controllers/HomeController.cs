@@ -1,6 +1,7 @@
 ﻿using Matsu.CoreSample.Common;
 using Matsu.CoreSample.Web.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
 
 namespace Matsu.CoreSample.Web.Controllers
@@ -16,17 +17,23 @@ namespace Matsu.CoreSample.Web.Controllers
 
         public IActionResult Index()
         {
-            var result = GetWorkFlowResults();
+            var result = GetDbResults();
             return View("Index", result);
 
         }
 
-        public string GetWorkFlowResults()
+        public string GetDbResults()
         {
-            var api = new LogicAppsStandardWebApi();
-            var result = api.CallHttpTrigger("https://la4standard.azurewebsites.net:443/api/WF-HTTPtrigger/triggers/manual/invoke?api-version=2022-05-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0", "tFJChuAq-AwUYqVJIOrtFrsGlQcqG7QA3JiXE6YhB0c").Result.ToString();
-            return $"Time from Logic Apps: {result}";
+            
+            return "xx";
         }
+
+        //public string GetWorkFlowResults()
+        //{
+        //    var api = new LogicAppsStandardWebApi();
+        //    var result = api.CallHttpTrigger("https://la4standard.azurewebsites.net:443/api/WF-HTTPtrigger/triggers/manual/invoke?api-version=2022-05-01&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0", "tFJChuAq-AwUYqVJIOrtFrsGlQcqG7QA3JiXE6YhB0c").Result.ToString();
+        //    return $"Time from Logic Apps: {result}";
+        //}
 
         public string GetApiResults()
         {
