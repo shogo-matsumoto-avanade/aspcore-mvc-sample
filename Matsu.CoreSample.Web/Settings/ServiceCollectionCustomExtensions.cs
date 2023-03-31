@@ -1,8 +1,5 @@
 ﻿using Matsu.CoreSample.Common.Domain.Users;
 using Matsu.CoreSamples.InMemoryInfrastructure.Users;
-using Matsu.CoreSamples.SqlDatabaseInfrastructure;
-using Microsoft.CodeAnalysis.Operations;
-using Microsoft.EntityFrameworkCore;
 
 namespace Matsu.CoreSample.Web.Settings
 {
@@ -41,7 +38,7 @@ namespace Matsu.CoreSample.Web.Settings
 
         private static void Initialize(IServiceCollection collection)
         {
-            collection.AddSingleton<IUserRepository, SqlServerUserRepository>();
+            collection.AddSingleton<IUserRepository, InMemoryUserRepository>();
             collection.AddTransient<IUserService, UserService>();
         }
 

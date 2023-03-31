@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Matsu.CoreSamples.SqlDatabaseInfrastructure.Context;
-using Matsu.CoreSamples.SqlDatabaseInfrastructure.Data;
+using Matsu.CoreSample.Web.Data;
+using Matsu.CoreSample.Web.Models;
 
 namespace Matsu.CoreSample.Web.Controllers
 {

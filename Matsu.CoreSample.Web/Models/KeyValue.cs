@@ -1,4 +1,4 @@
-﻿namespace Matsu.CoreSamples.SqlDatabaseInfrastructure.Data
+﻿namespace Matsu.CoreSample.Web.Models
 {
     public class KeyValue
     {

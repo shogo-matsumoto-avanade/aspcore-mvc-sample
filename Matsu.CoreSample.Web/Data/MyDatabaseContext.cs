@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Matsu.CoreSamples.SqlDatabaseInfrastructure.Data;
+﻿using Matsu.CoreSample.Web.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace Matsu.CoreSamples.SqlDatabaseInfrastructure.Context
+namespace Matsu.CoreSample.Web.Data
 {
     public class MyDatabaseContext : DbContext
     {

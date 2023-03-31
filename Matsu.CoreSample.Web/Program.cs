@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Web.Settings;
-using Matsu.CoreSamples.SqlDatabaseInfrastructure.Context;
+using Matsu.CoreSample.Web.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<MyDatabaseContext>(options =>
