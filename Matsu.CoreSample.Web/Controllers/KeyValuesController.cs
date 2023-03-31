@@ -22,9 +22,9 @@ namespace Matsu.CoreSample.Web.Controllers
         // GET: KeyValues
         public async Task<IActionResult> Index()
         {
-              return _context.KeyValue != null ? 
-                          View(await _context.KeyValue.ToListAsync()) :
-                          Problem("Entity set 'MyDatabaseContext.KeyValue'  is null.");
+            return _context.KeyValue != null ?
+                View(await _context.KeyValue.ToListAsync()) :
+                Problem("Entity set 'MyDatabaseContext.KeyValue'  is null.");
         }
 
         // GET: KeyValues/Details/5
@@ -150,14 +150,14 @@ namespace Matsu.CoreSample.Web.Controllers
             {
                 _context.KeyValue.Remove(keyValue);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool KeyValueExists(int id)
         {
-          return (_context.KeyValue?.Any(e => e.id == id)).GetValueOrDefault();
+            return (_context.KeyValue?.Any(e => e.id == id)).GetValueOrDefault();
         }
     }
 }
