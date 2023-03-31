@@ -12,5 +12,6 @@
     <WebStackScaffolding_DbContextTypeFullName>Matsu.CoreSample.Web.Data.MyDatabaseContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>C:\Users\shogo.matsumoto\source\repos\GitHub\aspcore-mvc-sample\Matsu.CoreSample.Web\Properties\PublishProfiles\webapp4connect-sqldb - Web Deploy.pubxml</NameOfLastUsedPublishProfile>
   </PropertyGroup>
 </Project>

@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Matsu.CoreSample.Web.Data;
-using Matsu.CoreSample.Web.Models;
+using Matsu.CoreSamples.SqlDatabaseInfrastructure.Context;
+using Matsu.CoreSamples.SqlDatabaseInfrastructure.Data;
 
 namespace Matsu.CoreSample.Web.Controllers
 {

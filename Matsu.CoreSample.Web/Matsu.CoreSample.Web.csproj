@@ -13,11 +13,18 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Matsu.CoreSample.Common\Matsu.CoreSample.Common.csproj" />
+    <ProjectReference Include="..\Matsu.CoreSamples.InMemoryInfrastructure\Matsu.CoreSamples.InMemoryInfrastructure.csproj" />
+    <ProjectReference Include="..\Matsu.CoreSamples.SqlDatabaseInfrastructure\Matsu.CoreSamples.SqlDatabaseInfrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>

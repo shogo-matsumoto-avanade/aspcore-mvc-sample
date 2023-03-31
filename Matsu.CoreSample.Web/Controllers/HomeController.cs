@@ -1,4 +1,5 @@
 ﻿using Matsu.CoreSample.Common;
+using Matsu.CoreSample.Common.Domain.Users;
 using Matsu.CoreSample.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
@@ -9,23 +10,23 @@ namespace Matsu.CoreSample.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserService _userService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IUserService userService)
         {
             _logger = logger;
+            _userService = userService;
         }
 
         public IActionResult Index()
         {
             var result = GetDbResults();
             return View("Index", result);
-
         }
 
         public string GetDbResults()
         {
-            
-            return "xx";
+            return _userService.Get("1").Name;
         }
 
         //public string GetWorkFlowResults()
