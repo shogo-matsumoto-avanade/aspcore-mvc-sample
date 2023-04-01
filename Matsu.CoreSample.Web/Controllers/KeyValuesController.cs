@@ -1,15 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Matsu.CoreSample.Web.Data;
-using Matsu.CoreSample.Web.Models;
+using Matsu.CoreSample.Common.Database.Models;
+using Matsu.CoreSample.Common.Database.Data;
 
 namespace Matsu.CoreSample.Web.Controllers
 {
     public class KeyValuesController : Controller
     {
-        private readonly MyDatabaseContext _context;
+        private readonly SqlServerCustomContext _context;
 
-        public KeyValuesController(MyDatabaseContext context)
+        public KeyValuesController(SqlServerCustomContext context)
         {
             _context = context;
         }

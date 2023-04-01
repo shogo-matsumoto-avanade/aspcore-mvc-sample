@@ -1,4 +1,4 @@
-﻿namespace Matsu.CoreSample.Web.Models
+﻿namespace Matsu.CoreSample.Common.Database.Models
 {
     public class KeyValue
     {
