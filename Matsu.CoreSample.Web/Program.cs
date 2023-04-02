@@ -1,20 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Web.Settings;
-using Matsu.CoreSample.Common.Database.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-//see DI for entity framework:  https://entityframeworkcore.com/articles/carloscds-ef-core-dependency-injection
-//builder.Services.AddDbContext<SqlServerCustomContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.InjectCustomDependency(builder.Configuration.GetValue<string>("DependencyInjection"));
+
+// Dependency Injection
+var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
+var diType = DIHelper.GetInjectionType(injectionType);
+builder.Services.InjectCustomDependency(diType);
 builder.Services.InjectDatabaseDependency(
-        builder.Configuration.GetValue<string>("DependencyInjection"), 
+        diType, 
         builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found."));
 
 var app = builder.Build();
+// Configure Context
+app.Services.ConfigureCustomContext(diType);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

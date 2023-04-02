@@ -5,9 +5,7 @@ namespace Matsu.CoreSample.Common.Database.Data
 {
     public class SqlServerCustomContext : DbContext
     {
-        public SqlServerCustomContext(DbContextOptions<SqlServerCustomContext> options)
-            : 
-            base(options)
+        public SqlServerCustomContext(DbContextOptions options) : base(options)
         {
         }
 

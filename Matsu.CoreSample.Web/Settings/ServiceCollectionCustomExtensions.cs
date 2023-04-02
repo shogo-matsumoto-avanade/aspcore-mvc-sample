@@ -7,60 +7,19 @@ namespace Matsu.CoreSample.Web.Settings
 {
     public static class ServiceCollectionCustomExtensions
     {
-        public static void InjectCustomDependency(this IServiceCollection collection, string injectionType)
+        #region Dependency Injection
+
+        public static void InjectCustomDependency(this IServiceCollection services, DependencyInjectionTypes diType)
         {
-            var dependency = CreateInjectionType(injectionType);
-
-            switch (dependency)
+            if (diType.IsProduction())
             {
-                case DependencyInjectionTypes.Stub:
-                    InitializeStub(collection);
-                    break;
-                case DependencyInjectionTypes.Production:
-                    Initialize(collection);
-                    break;
-                default:
-                    InitializeStub(collection);
-                    break;
-            }
-        }
-
-        public static void InjectDatabaseDependency(this IServiceCollection collection, string injectionType, string connectionString)
-        {
-            var dependency = CreateInjectionType(injectionType);
-
-            switch (dependency)
-            {
-                case DependencyInjectionTypes.Stub:
-                    InitializeDatabaseStub(collection);
-                    break;
-                case DependencyInjectionTypes.Production:
-                    InitializeDatabase(collection, connectionString);
-                    break;
-                default:
-                    InitializeDatabaseStub(collection);
-                    break;
-
-            }
-
-        }
-
-
-        private static DependencyInjectionTypes CreateInjectionType(string injectionType)
-        {
-            DependencyInjectionTypes dependency;
-            if (injectionType == null || !Enum.TryParse(injectionType, out dependency))
-            {
-                dependency = DependencyInjectionTypes.Production;
+                Initialize(services);
             }
             else
             {
-                dependency = Enum.Parse<DependencyInjectionTypes>(injectionType);
+                InitializeStub(services);
             }
-            return dependency;
         }
-
-        #region Injection Service Repository
 
         private static void Initialize(IServiceCollection collection)
         {
@@ -68,22 +27,34 @@ namespace Matsu.CoreSample.Web.Settings
             collection.AddTransient<IUserService, UserService>();
         }
 
-        private static void InitializeStub(IServiceCollection collection)
+        private static void InitializeStub(IServiceCollection services)
         {
-            collection.AddSingleton<IUserRepository, InMemoryUserRepository>();
-            collection.AddTransient<IUserService, UserService>();
+            services.AddSingleton<IUserRepository, InMemoryUserRepository>();
+            services.AddTransient<IUserService, UserService>();
         }
         #endregion
 
-        #region Injection Database
+        #region Entity Framework Database Injection 
 
-        private static void InitializeDatabase(IServiceCollection collection, string connectionString)
+        public static void InjectDatabaseDependency(this IServiceCollection services, DependencyInjectionTypes diType, string connectionString)
         {
-            collection.AddDbContext<SqlServerCustomContext>(options => options.UseSqlServer(connectionString));
+            if (diType.IsProduction())
+            {
+                InitializeDatabase(services, connectionString);
+            }
+            else
+            {
+                InitializeDatabaseStub(services);
+            }
         }
-        private static void InitializeDatabaseStub(IServiceCollection collection)
+
+        private static void InitializeDatabase(IServiceCollection services, string connectionString)
         {
-            //collection.AddDbContext<InMemoryCustomDatabaseContext>(options => options.UseInMemoryDatabase("DBMemory"));
+            services.AddDbContext<SqlServerCustomContext>(options => options.UseSqlServer(connectionString));
+        }
+        private static void InitializeDatabaseStub(IServiceCollection services)
+        {
+            services.AddDbContext<SqlServerCustomContext>(options => options.UseInMemoryDatabase("InMemoryDB"));
         }
         #endregion
     }

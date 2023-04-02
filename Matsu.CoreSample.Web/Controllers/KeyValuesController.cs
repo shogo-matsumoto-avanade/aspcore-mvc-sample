@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Common.Database.Models;
 using Matsu.CoreSample.Common.Database.Data;
+using System.Linq;
 
 namespace Matsu.CoreSample.Web.Controllers
 {
@@ -51,10 +52,11 @@ namespace Matsu.CoreSample.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Value")] KeyValue keyValue)
+        public async Task<IActionResult> Create([Bind("id,name,value")] KeyValue keyValue)
         {
             if (ModelState.IsValid)
             {
+                keyValue.id = _context.KeyValue.Max(m => m.id) + 1;
                 _context.Add(keyValue);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -83,7 +85,7 @@ namespace Matsu.CoreSample.Web.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Value")] KeyValue keyValue)
+        public async Task<IActionResult> Edit(int id, [Bind("id,name,value")] KeyValue keyValue)
         {
             if (id != keyValue.id)
             {
