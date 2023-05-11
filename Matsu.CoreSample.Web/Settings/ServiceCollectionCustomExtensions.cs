@@ -2,7 +2,6 @@
 using Matsu.CoreSample.Common.Domain.Users;
 using Matsu.CoreSamples.InMemoryInfrastructure.Users;
 using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Eventing.Reader;
 
 namespace Matsu.CoreSample.Web.Settings
 {
