@@ -1,14 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Web.Settings;
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//Configure logger
-builder.Logging.ClearProviders();
-builder.Logging.AddConsole();
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Configure logger
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: (config) =>
+        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+        configureApplicationInsightsLoggerOptions: (options) => { }
+    );
 
 // Dependency Injection
 var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
