@@ -1,7 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Web.Settings;
-using Microsoft.Extensions.Logging.ApplicationInsights;
-using Microsoft.Extensions.Logging.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
