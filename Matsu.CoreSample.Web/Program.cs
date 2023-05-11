@@ -13,7 +13,7 @@ builder.Services.AddControllersWithViews();
 //    configureTelemetryConfiguration: (config) =>
 //        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
 //        configureApplicationInsightsLoggerOptions: (options) => { }
-    );
+    //);
 
 // Dependency Injection
 var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
