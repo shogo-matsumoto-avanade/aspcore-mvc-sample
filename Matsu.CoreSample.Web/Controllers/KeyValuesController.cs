@@ -9,15 +9,18 @@ namespace Matsu.CoreSample.Web.Controllers
     public class KeyValuesController : Controller
     {
         private readonly SqlServerCustomContext _context;
+        private readonly ILogger _logger;
 
-        public KeyValuesController(SqlServerCustomContext context)
+        public KeyValuesController(SqlServerCustomContext context, ILogger logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: KeyValues
         public async Task<IActionResult> Index()
         {
+            _logger.LogWarning("[CustomLog] Matsu.CoreSample.Web.Controllers.KeyValuesController - Index");
             return _context.KeyValue != null ?
                 View(await _context.KeyValue.ToListAsync()) :
                 Problem("Entity set 'MyDatabaseContext.KeyValue'  is null.");
