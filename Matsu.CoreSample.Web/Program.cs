@@ -16,11 +16,7 @@ builder.Services.InjectDatabaseDependency(
         diType, 
         builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found."));
 //Configure logger
-builder.Logging.AddApplicationInsights(
-    configureTelemetryConfiguration: (config) =>
-        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
-        configureApplicationInsightsLoggerOptions: (options) => { }
-  );
+builder.Services.AddApplicationInsightsTelemetry();
 
 var app = builder.Build();
 // Configure Context
