@@ -9,10 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 //Configure logger
-builder.Logging.AddApplicationInsights(
-    configureTelemetryConfiguration: (config) =>
-        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
-        configureApplicationInsightsLoggerOptions: (options) => { }
+//builder.Logging.AddApplicationInsights(
+//    configureTelemetryConfiguration: (config) =>
+//        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+//        configureApplicationInsightsLoggerOptions: (options) => { }
     );
 
 // Dependency Injection
