@@ -8,13 +8,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-//Configure logger
-//builder.Logging.AddApplicationInsights(
-//    configureTelemetryConfiguration: (config) =>
-//        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
-//        configureApplicationInsightsLoggerOptions: (options) => { }
-    //);
-
 // Dependency Injection
 var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
 var diType = DIHelper.GetInjectionType(injectionType);
@@ -22,6 +15,12 @@ builder.Services.InjectCustomDependency(diType);
 builder.Services.InjectDatabaseDependency(
         diType, 
         builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found."));
+//Configure logger
+builder.Logging.AddApplicationInsights(
+    configureTelemetryConfiguration: (config) =>
+        config.ConnectionString = builder.Configuration.GetConnectionString("APPLICATIONINSIGHTS_CONNECTION_STRING"),
+        configureApplicationInsightsLoggerOptions: (options) => { }
+  );
 
 var app = builder.Build();
 // Configure Context
