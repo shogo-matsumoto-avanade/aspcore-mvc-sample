@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 // Dependency Injection
 var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
 var diType = DIHelper.GetInjectionType(injectionType);
-builder.Services.InjectCustomDependency(diType);
+builder.Services.InjectServiceRepositoryDependency(diType);
 builder.Services.InjectDatabaseDependency(
         diType, 
         builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found."));

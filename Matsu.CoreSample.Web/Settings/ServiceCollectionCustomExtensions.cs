@@ -2,14 +2,15 @@
 using Matsu.CoreSample.Common.Domain.Users;
 using Matsu.CoreSamples.InMemoryInfrastructure.Users;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Matsu.CoreSample.Web.Settings
 {
     public static class ServiceCollectionCustomExtensions
     {
-        #region Dependency Injection
+        #region Service Repository Dependency Injection
 
-        public static void InjectCustomDependency(this IServiceCollection services, DependencyInjectionTypes diType)
+        public static void InjectServiceRepositoryDependency(this IServiceCollection services, DependencyInjectionTypes diType)
         {
             if (diType.IsProduction())
             {
