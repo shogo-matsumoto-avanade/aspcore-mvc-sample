@@ -11,7 +11,7 @@ namespace Matsu.CoreSample.Web.Controllers
         private readonly SqlServerCustomContext _context;
         private readonly ILogger _logger;
 
-        public KeyValuesController(SqlServerCustomContext context, ILogger logger)
+        public KeyValuesController(SqlServerCustomContext context, ILogger<KeyValuesController> logger)
         {
             _context = context;
             _logger = logger;

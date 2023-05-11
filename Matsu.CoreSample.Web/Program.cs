@@ -3,6 +3,10 @@ using Matsu.CoreSample.Web.Settings;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Configure logger
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
