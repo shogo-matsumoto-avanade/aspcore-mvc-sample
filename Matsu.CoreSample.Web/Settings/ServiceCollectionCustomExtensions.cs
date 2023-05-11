@@ -35,6 +35,22 @@ namespace Matsu.CoreSample.Web.Settings
         }
         #endregion
 
+        #region Logger Injection
+
+        public static void InjectLoggerDependency(this IServiceCollection services, OperationEnvironments env)
+        {
+            if (env.IsAzure())
+            {
+                services.AddApplicationInsightsTelemetry();
+            }
+            else
+            {
+                // No additional configuration
+            }
+        }
+
+        #endregion
+
         #region Entity Framework Database Injection 
 
         public static void InjectDatabaseDependency(this IServiceCollection services, DependencyInjectionTypes diType, string connectionString)

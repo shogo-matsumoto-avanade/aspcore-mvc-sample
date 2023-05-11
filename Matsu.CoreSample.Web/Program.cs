@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Matsu.CoreSample.Web.Settings;
 using Microsoft.Extensions.Logging.ApplicationInsights;
+using Microsoft.Extensions.Logging.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,13 +11,15 @@ builder.Services.AddControllersWithViews();
 
 // Dependency Injection
 var injectionType = builder.Configuration.GetValue<string>("DependencyInjection");
-var diType = DIHelper.GetInjectionType(injectionType);
+var diType = DIHelper.GetServiceInjectionType(injectionType);
 builder.Services.InjectServiceRepositoryDependency(diType);
 builder.Services.InjectDatabaseDependency(
         diType, 
         builder.Configuration.GetConnectionString("MyDatabaseContext") ?? throw new InvalidOperationException("Connection string 'MyDatabaseContext' not found."));
 //Configure logger
-builder.Services.AddApplicationInsightsTelemetry();
+var loggerEnvironment = builder.Configuration.GetValue<string>("LoggerInjection");
+var env = DIHelper.GetLoggerInjectionType(loggerEnvironment);
+builder.Services.InjectLoggerDependency(env);
 
 var app = builder.Build();
 // Configure Context

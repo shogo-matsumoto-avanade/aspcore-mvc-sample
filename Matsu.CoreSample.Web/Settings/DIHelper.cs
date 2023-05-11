@@ -2,7 +2,7 @@
 {
     public static class DIHelper
     {
-        internal static DependencyInjectionTypes GetInjectionType(string injectionType)
+        internal static DependencyInjectionTypes GetServiceInjectionType(string injectionType)
         {
             DependencyInjectionTypes dependency;
             if (injectionType == null || !Enum.TryParse(injectionType, out dependency))
@@ -12,6 +12,20 @@
             else
             {
                 dependency = Enum.Parse<DependencyInjectionTypes>(injectionType);
+            }
+            return dependency;
+        }
+
+        internal static OperationEnvironments GetLoggerInjectionType(string injectionType)
+        {
+            OperationEnvironments dependency;
+            if (injectionType == null || !Enum.TryParse(injectionType, out dependency))
+            {
+                dependency = OperationEnvironments.Azure;
+            }
+            else
+            {
+                dependency = Enum.Parse<OperationEnvironments>(injectionType);
             }
             return dependency;
         }
